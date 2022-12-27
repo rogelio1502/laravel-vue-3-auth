@@ -4,7 +4,6 @@
       v-if="posts.length > 0"
       class="row d-flex justify-content-center"
     >
-
       <div class="col-12">
         <ul
           v-for="post in posts"
@@ -98,7 +97,7 @@ export default {
         cancelButtonText: "Cancelar",
         cancelButtonColor: "orange",
         showCancelButton: true,
-        confirmButtonText: "Si,Eliminar",
+        confirmButtonText: "Si, Eliminar",
         confirmButtonColor: "Red",
         icon: "question",
       }).then((r) => {
