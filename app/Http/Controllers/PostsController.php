@@ -24,7 +24,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return response(json_encode(Post::all(),1))->withHeaders([
+        $posts = Post::orderBy('created_at','desc')->get();
+        $authId = Auth::id();
+        return response(json_encode(['posts' => $posts, 'userId' => $authId],1))->withHeaders([
             'Content-Type' => 'application/json',
         ]);;
     }

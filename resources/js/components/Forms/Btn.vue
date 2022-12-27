@@ -20,6 +20,7 @@ export default {
         save: "success",
         remove: "danger",
         edit: "warning",
+        cancel: "danger",
       },
     };
   },

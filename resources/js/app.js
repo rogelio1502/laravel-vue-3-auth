@@ -16,9 +16,9 @@ import { createApp } from 'vue'
 const app = createApp({})
 
 import Counter from './components/Counter.vue'
-import PostAddForm from './components/Posts/AddForm.vue'
+import PostHome from './components/Posts/Home.vue'
 app.component('counter', Counter)
-app.component('post-add-form', PostAddForm)
+app.component('post-home', PostHome)
 
 /**
  * The following block of code may be used to automatically register your
