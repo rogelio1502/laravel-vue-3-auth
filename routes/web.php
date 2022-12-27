@@ -20,11 +20,11 @@ use App\Http\Controllers\PostsController;
 Auth::routes();
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get("/api/posts",[PostsController::class,'index']);
-Route::get("/api/posts/{post}",[PostsController::class,'show']);
-Route::post("/api/posts",[PostsController::class,'store']);
-Route::delete("/api/posts/{post}",[PostsController::class,'destroy']);
+Route::get("posts",[PostsController::class,'index']);
+Route::get("posts/{post}",[PostsController::class,'show']);
+Route::post("posts",[PostsController::class,'store']);
+Route::delete("posts/{post}",[PostsController::class,'destroy']);
 

@@ -76,7 +76,7 @@ export default {
       }
 
       axios
-        .post("/api/posts", {
+        .post("/posts", {
           title: this.title,
           description: this.description,
         })

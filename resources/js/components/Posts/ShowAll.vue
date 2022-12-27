@@ -77,7 +77,7 @@ export default {
     getPosts() {
       this.posts = [];
       axios
-        .get("/api/posts")
+        .get("/posts")
         .then((r) => {
           this.posts = r.data.posts;
           this.userId = r.data.userId;
@@ -103,7 +103,7 @@ export default {
       }).then((r) => {
         if (r.isConfirmed) {
           axios
-            .delete("/api/posts/" + postId)
+            .delete("/posts/" + postId)
             .then((dr) => {
               this.getPosts();
               Swal.fire({
