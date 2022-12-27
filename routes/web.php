@@ -25,4 +25,5 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get("/api/posts",[PostsController::class,'index']);
 Route::get("/api/posts/{post}",[PostsController::class,'show']);
 Route::post("/api/posts",[PostsController::class,'store']);
+Route::delete("/api/posts/{post}",[PostsController::class,'destroy']);
 

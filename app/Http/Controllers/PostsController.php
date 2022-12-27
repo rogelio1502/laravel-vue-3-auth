@@ -83,6 +83,9 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return response(json_encode(["message" => "ok"],1))->withHeaders([
+            'Content-Type' => 'application/json',
+        ]);;
     }
 }

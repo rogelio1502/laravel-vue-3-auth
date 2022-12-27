@@ -4,9 +4,7 @@
       v-if="posts.length > 0"
       class="row d-flex justify-content-center"
     >
-      <div class="col-12 text-center">
-        <h3>Posts Publicados</h3>
-      </div>
+
       <div class="col-12">
         <ul
           v-for="post in posts"
@@ -32,7 +30,7 @@
                 <div v-if="userId == post.created_by">
                   <Btn
                     :btnTxt="'Eliminar'"
-                    :btnAction="removePost"
+                    :btnAction="removePost.bind(this,post.id)"
                     :btnType="'remove'"
                   ></Btn>
 
@@ -56,6 +54,7 @@
 import axios from "axios";
 import moment from "moment";
 import Btn from "../Forms/Btn.vue";
+import Swal from "sweetalert2";
 export default {
   components: {
     Btn,
@@ -77,16 +76,53 @@ export default {
       };
     },
     getPosts() {
+      this.posts = [];
       axios
         .get("/api/posts")
         .then((r) => {
-          this.posts = [];
           this.posts = r.data.posts;
           this.userId = r.data.userId;
         })
-        .catch((e) => {});
+        .catch((e) => {
+          Swal.fire({
+            title: "¡Ooops!",
+            text: "Error al cargar los posts.",
+            icon: "error",
+          });
+        });
     },
-    removePost() {},
+    removePost(postId) {
+      Swal.fire({
+        title: "¡Atención!",
+        text: "¿Deseas Eliminar el post?",
+        cancelButtonText: "Cancelar",
+        cancelButtonColor: "orange",
+        showCancelButton: true,
+        confirmButtonText: "Si,Eliminar",
+        confirmButtonColor: "Red",
+        icon: "question",
+      }).then((r) => {
+        if (r.isConfirmed) {
+          axios
+            .delete("/api/posts/" + postId)
+            .then((dr) => {
+              this.getPosts();
+              Swal.fire({
+                title: "¡Listo!",
+                icon: "success",
+                text: "Se ha eliminado correctamente el Post.",
+              });
+            })
+            .catch((de) => {
+              Swal.fire({
+                title: "¡Ooops!",
+                icon: "error",
+                text: "No se ha eliminado correctamente el Post. Ha habido un error.",
+              });
+            });
+        }
+      });
+    },
   },
 };
 </script>
